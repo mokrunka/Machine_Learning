@@ -35,3 +35,5 @@ predicted = model.predict(x_test)
 # print out a readable summary comparing the prediction to the actual
 for x in range(len(predicted)):
     print("Predicted: ", condition[predicted[x]], "Actual: ", condition[y_test[x]], "\nData: ", x_test[x])
+
+# test
