@@ -1,6 +1,7 @@
 import sklearn
 from sklearn import datasets
 from sklearn import svm
+# from youtube video
 
 cancer = datasets.load_breast_cancer()
 
