@@ -1,11 +1,6 @@
 import numpy as np
 
-np.random.seed(0)
-
-# input data (denoted with capital X by convention)
-# X = [[1, 2, 3, 2.5],
-#      [2.0, 5.0, -1.0, 2.0],
-#      [-1.5, 2.7, 3.3, -0.8]]
+np.random.seed(42)
 
 # dataset generator
 def create_data(points, classes):
@@ -24,24 +19,30 @@ class Layer_Dense:
         self.weights = 0.1 * np.random.randn(n_inputs, n_neurons)
         self.biases = np.zeros((1, n_neurons))
     def forward(self, inputs):
+        '''forward pass which computes the output of a neuron (a la: mx + b)'''
         self.output = np.dot(inputs, self.weights) + self.biases
 
 class Activation_ReLU:
+    def __init__(self):
+        pass
     '''rectified linear activation function'''
     def forward(self, inputs):
+        '''designed to adjust the output from a neuron to make all values positive or 0'''
         self.output = np.maximum(0, inputs)
-
-# the n_neurons can be anything, we chose 5
-# the n_inputs is the length of one row of the X input data (like different sensor readings)
-layer1 = Layer_Dense(2, 5)
 
 # create the data set, 3 sets, 100 values per set
 X, y = create_data(100, 3)
+
+# the n_neurons can be anything, we chose 5
+# the n_inputs is the length of one row of the X input data (like different sensor readings)
+# 2 is specified in the create_data function
+layer1 = Layer_Dense(2, 5)
+
 activation1 = Activation_ReLU()
 
 layer1.forward(X)
+
+# note that the input to the forward function here is the output of the neuron
 activation1.forward(layer1.output)
 # print(layer1.output)
 print(activation1.output)
-
-
